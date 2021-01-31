@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2020 at 07:47 AM
+-- Generation Time: Jan 31, 2021 at 03:44 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.3.22
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,20 @@ CREATE TABLE `customer` (
   `name` varchar(200) NOT NULL,
   `mobile no` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `address` varchar(200) NOT NULL
+  `address` varchar(200) NOT NULL,
+  `adminId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `petrol_pump`
+--
+
+CREATE TABLE `petrol_pump` (
+  `mobileNo` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -46,7 +59,8 @@ CREATE TABLE `ship` (
   `name` varchar(200) NOT NULL,
   `date` date NOT NULL,
   `ship` varchar(30) NOT NULL,
-  `less_money` int(11) NOT NULL
+  `less_money` int(11) NOT NULL,
+  `adminId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -60,7 +74,8 @@ CREATE TABLE `transaction` (
   `c_name` varchar(200) NOT NULL,
   `date` datetime NOT NULL,
   `payment_type` varchar(200) NOT NULL,
-  `amount` varchar(200) NOT NULL
+  `amount` varchar(200) NOT NULL,
+  `adminId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -75,7 +90,8 @@ CREATE TABLE `transaction_detail` (
   `product` varchar(100) NOT NULL,
   `current rate` varchar(100) NOT NULL,
   `quntity` varchar(100) NOT NULL,
-  `vahicle no` varchar(100) NOT NULL
+  `vahicle no` varchar(100) NOT NULL,
+  `adminId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -89,7 +105,8 @@ CREATE TABLE `worker` (
   `name` varchar(200) NOT NULL,
   `mobile no` varchar(15) NOT NULL,
   `salary` varchar(10) NOT NULL,
-  `address` varchar(200) NOT NULL
+  `address` varchar(200) NOT NULL,
+  `adminId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -103,7 +120,8 @@ CREATE TABLE `worker_transaction` (
   `worker_name` varchar(100) NOT NULL,
   `comment` varchar(100) NOT NULL,
   `money` int(11) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `adminId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -115,6 +133,12 @@ CREATE TABLE `worker_transaction` (
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `petrol_pump`
+--
+ALTER TABLE `petrol_pump`
+  ADD PRIMARY KEY (`mobileNo`);
 
 --
 -- Indexes for table `ship`
@@ -160,7 +184,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `ship`
 --
 ALTER TABLE `ship`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transaction`
